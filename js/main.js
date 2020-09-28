@@ -86,6 +86,10 @@
 
   const spin = document.getElementById('spin');
   spin.addEventListener('click',() => {
+    if(spin.classList.contains('inactive')) {
+      return;
+    }
+    spin.classList.add('inactive');
     panels.forEach(panel => {
       panel.spin();
     });
