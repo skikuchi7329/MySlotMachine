@@ -16,6 +16,13 @@
       this.stop.classList.add('stop');
       this.stop.addEventListener('click', () => {
         clearTimeout(this.timeoutId);
+
+
+      panelsLeft--;
+
+      if (panelsLeft === 0) {
+        checkResult();
+      }
       });
 
       section.appendChild(this.img);
@@ -39,8 +46,34 @@
       this.timeoutId = setTimeout(() => {
          this.spin();
       }, 50);
+
     }
 
+    isUnmached(p1, p2) {
+      // if (this.img.src !== p1.img.src && this.img.src !== p2.img.src) {
+      //   return true;
+      // } else {
+      //   return false;
+      // }
+      return this.img.src !== p1.img.src && this.img.src !== p2.img.src;
+    };
+
+    unmatch() {
+      this.img.classList.add('unmatched');
+    };
+
+  }
+
+  function checkResult() {
+    if(panels[0].isUnmached(panels[1], panels[2])) {
+      panels[0].unmatch();
+    }
+    if(panels[1].isUnmached(panels[0], panels[2])) {
+      panels[1].unmatch();
+    }
+    if(panels[2].isUnmached(panels[0], panels[1])) {
+      panels[2].unmatch();
+    }
   }
 
   const panels = [
@@ -48,6 +81,8 @@
     new Panel(),
     new Panel(),
   ];
+
+  let panelsLeft = 3;
 
   const spin = document.getElementById('spin');
   spin.addEventListener('click',() => {
