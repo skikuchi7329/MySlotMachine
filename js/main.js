@@ -13,7 +13,7 @@
       
       this.stop = document.createElement('div');
       this.stop.textContent = 'STOP';
-      this.stop.classList.add('stop');
+      this.stop.classList.add('stop', 'inactive');
       this.stop.addEventListener('click', () => {
         if(this.stop.classList.contains('inactive')) {
           return;
@@ -25,9 +25,12 @@
       panelsLeft--;
 
       if (panelsLeft === 0) {
+        spin.classList.remove('inactive');
+        panelsLeft = 3;
         checkResult();
       }
       });
+
 
       section.appendChild(this.img);
       section.appendChild(this.stop);
@@ -54,17 +57,17 @@
     }
 
     isUnmached(p1, p2) {
-      // if (this.img.src !== p1.img.src && this.img.src !== p2.img.src) {
-      //   return true;
-      // } else {
-      //   return false;
-      // }
       return this.img.src !== p1.img.src && this.img.src !== p2.img.src;
     };
 
     unmatch() {
       this.img.classList.add('unmatched');
     };
+
+    activate() {
+      this.img.classList.remove('unmatched');
+      this.stop.classList.remove('inactive');
+    }
 
   }
 
@@ -95,7 +98,15 @@
     }
     spin.classList.add('inactive');
     panels.forEach(panel => {
+      panel.activate();
       panel.spin();
     });
   });
+
+  const replay = document.getElementById('replay');
+      replay.textContent = 'REPLAY';
+      replay.classList.add('replay');
+      replay.addEventListener('click', () => {
+        location.reload();
+      });
 }

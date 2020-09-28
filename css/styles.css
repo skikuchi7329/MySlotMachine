@@ -58,3 +58,17 @@ main {
 .inactive {
   opacity: 0.5;
 }
+
+.replay {
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  margin: 20px auto;
+  text-align: center;
+  background: black;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 40px;
+  box-shadow: 0 4px 0 gray;
+}
