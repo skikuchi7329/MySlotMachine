@@ -15,6 +15,10 @@
       this.stop.textContent = 'STOP';
       this.stop.classList.add('stop');
       this.stop.addEventListener('click', () => {
+        if(this.stop.classList.contains('inactive')) {
+          return;
+        }
+        this.stop.classList.add('inactive');
         clearTimeout(this.timeoutId);
 
 
